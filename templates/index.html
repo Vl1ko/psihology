@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Оценка уровня стресса</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card mt-5 shadow">
+                    <div class="card-header bg-primary text-white">
+                        <h1 class="text-center">Оценка уровня стресса</h1>
+                    </div>
+                    <div class="card-body">
+                        {% if result %}
+                            <div class="result-container">
+                                <h2 class="text-center mb-4">Результаты теста</h2>
+                                <div class="alert alert-{% if result.level == 'Низкий' %}success{% elif result.level == 'Средний' %}warning{% elif result.level == 'Повышенный' %}warning{% else %}danger{% endif %}">
+                                    <h3 class="text-center">Уровень стресса: {{ result.level }}</h3>
+                                </div>
+                                <div class="recommendation p-3 border rounded my-3">
+                                    <h4>Рекомендации:</h4>
+                                    <p>{{ result.recommendation }}</p>
+                                </div>
+                                <div class="text-center mt-4">
+                                    <a href="{{ url_for('index') }}" class="btn btn-primary">Пройти тест снова</a>
+                                </div>
+                            </div>
+                        {% else %}
+                            <form method="POST" class="stress-form">
+                                {{ form.hidden_tag() }}
+                                
+                                <div class="instructions mb-4">
+                                    <p class="lead">Ответьте на следующие вопросы, чтобы оценить свой уровень стресса:</p>
+                                </div>
+                                
+                                <div class="question-container mb-4">
+                                    <p class="question fw-bold">{{ form.question_1.label }}</p>
+                                    <div class="options">
+                                        {% for subfield in form.question_1 %}
+                                            <div class="form-check">
+                                                {{ subfield(class="form-check-input") }}
+                                                {{ subfield.label(class="form-check-label") }}
+                                            </div>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                                
+                                <div class="question-container mb-4">
+                                    <p class="question fw-bold">{{ form.question_2.label }}</p>
+                                    <div class="options">
+                                        {% for subfield in form.question_2 %}
+                                            <div class="form-check">
+                                                {{ subfield(class="form-check-input") }}
+                                                {{ subfield.label(class="form-check-label") }}
+                                            </div>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                                
+                                <div class="question-container mb-4">
+                                    <p class="question fw-bold">{{ form.question_3.label }}</p>
+                                    <div class="options">
+                                        {% for subfield in form.question_3 %}
+                                            <div class="form-check">
+                                                {{ subfield(class="form-check-input") }}
+                                                {{ subfield.label(class="form-check-label") }}
+                                            </div>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                                
+                                <div class="question-container mb-4">
+                                    <p class="question fw-bold">{{ form.question_4.label }}</p>
+                                    <div class="options">
+                                        {% for subfield in form.question_4 %}
+                                            <div class="form-check">
+                                                {{ subfield(class="form-check-input") }}
+                                                {{ subfield.label(class="form-check-label") }}
+                                            </div>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                                
+                                <div class="question-container mb-4">
+                                    <p class="question fw-bold">{{ form.question_5.label }}</p>
+                                    <div class="options">
+                                        {% for subfield in form.question_5 %}
+                                            <div class="form-check">
+                                                {{ subfield(class="form-check-input") }}
+                                                {{ subfield.label(class="form-check-label") }}
+                                            </div>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                                
+                                <div class="question-container mb-4">
+                                    <p class="question fw-bold">{{ form.question_6.label }}</p>
+                                    <div class="options">
+                                        {% for subfield in form.question_6 %}
+                                            <div class="form-check">
+                                                {{ subfield(class="form-check-input") }}
+                                                {{ subfield.label(class="form-check-label") }}
+                                            </div>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                                
+                                <div class="question-container mb-4">
+                                    <p class="question fw-bold">{{ form.question_7.label }}</p>
+                                    <div class="options">
+                                        {% for subfield in form.question_7 %}
+                                            <div class="form-check">
+                                                {{ subfield(class="form-check-input") }}
+                                                {{ subfield.label(class="form-check-label") }}
+                                            </div>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                                
+                                <div class="question-container mb-4">
+                                    <p class="question fw-bold">{{ form.question_8.label }}</p>
+                                    <div class="options">
+                                        {% for subfield in form.question_8 %}
+                                            <div class="form-check">
+                                                {{ subfield(class="form-check-input") }}
+                                                {{ subfield.label(class="form-check-label") }}
+                                            </div>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                                
+                                <div class="question-container mb-4">
+                                    <p class="question fw-bold">{{ form.question_9.label }}</p>
+                                    <div class="options">
+                                        {% for subfield in form.question_9 %}
+                                            <div class="form-check">
+                                                {{ subfield(class="form-check-input") }}
+                                                {{ subfield.label(class="form-check-label") }}
+                                            </div>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                                
+                                <div class="question-container mb-4">
+                                    <p class="question fw-bold">{{ form.question_10.label }}</p>
+                                    <div class="options">
+                                        {% for subfield in form.question_10 %}
+                                            <div class="form-check">
+                                                {{ subfield(class="form-check-input") }}
+                                                {{ subfield.label(class="form-check-label") }}
+                                            </div>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                                
+                                <div class="text-center mt-4">
+                                    {{ form.submit(class="btn btn-primary btn-lg") }}
+                                </div>
+                            </form>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.0/js/bootstrap.bundle.min.js"></script>
+</body>
+</html> 
